@@ -14,15 +14,14 @@ import OpenGL
 
 import genesis as gs
 
+from tkinter import Tk
+from tkinter import filedialog
+
 try:
-    from Tkinter import Tk
-    from Tkinter import tkFileDialog as filedialog
-except Exception:
-    try:
-        from tkinter import Tk
-        from tkinter import filedialog as filedialog
-    except Exception:
-        pass
+    root = Tk()
+    root.withdraw()
+except:
+    pass
 
 import pyglet
 from moviepy.video.io.ffmpeg_writer import FFMPEG_VideoWriter
@@ -988,7 +987,6 @@ class Viewer(pyglet.window.Window):
         }
         filetypes = [file_types[x] for x in file_exts]
         try:
-            root = Tk()
             save_dir = self.viewer_flags["save_directory"]
             if save_dir is None:
                 save_dir = os.getcwd()
@@ -998,7 +996,6 @@ class Viewer(pyglet.window.Window):
         except Exception:
             return None
 
-        root.destroy()
         if filename == ():
             return None
         return filename
